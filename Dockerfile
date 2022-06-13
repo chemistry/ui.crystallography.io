@@ -14,4 +14,4 @@ RUN npm install --production
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next ./.next
 
-CMD ["npm", "start", "--", "-p", "$PORT"]
+CMD ["npm", "start", "--", "-p", "80"]

@@ -9,7 +9,6 @@ New UI for the website
 
 Execute container
 
-
 ## Local Commands
 
 * Serve project: `npm run serve`
