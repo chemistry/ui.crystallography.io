@@ -5,7 +5,7 @@ export default function NewsPage() {
     return (
         <div>
             <Head>
-                <title> News</title>
+                <title>News</title>
             </Head>
             <h1>News</h1>
             <hr />

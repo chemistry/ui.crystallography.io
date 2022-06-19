@@ -1,5 +1,4 @@
 import * as React from "react";
-import "./index.scss";
 import { CloseIcon } from "../../icons";
 import { NavMenuBottom, NavMenuTop } from "../nav-menu";
 
