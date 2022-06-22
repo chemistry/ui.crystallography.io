@@ -25,18 +25,19 @@ hr {
 .navbar-toggler::focus{
     box-shadow: 0 0 0 2px;
 }
-
-.app h1 {
-    font-size: 1.8rem ;
-}
-.app h2 {
-    font-size: 1.6rem;
-}
-.app h3 {
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-.app  .pull-left {
+/*
+    .app h1 {
+        font-size: 1.8rem ;
+    }
+    .app h2 {
+        font-size: 1.6rem;
+    }
+    .app h3 {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+*/
+.app .pull-left {
     float: left !important;
 }
 

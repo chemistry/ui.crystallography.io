@@ -1,29 +1,14 @@
-import React, { Children, useState } from 'react';
-import Link from 'next/link';
+import React, { useState } from 'react';
 import Head from 'next/head';
-import { withRouter } from 'next/router';
 import type { AppProps } from 'next/app';
 import classNames from 'classnames';
-import '../styles/globals.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/globals.scss';
 import '../styles/main.scss';
 import './layout.scss';
 import { CollapseIcon, LogoMobileIcon, NavBtnIcon } from '../icons';
 import { AppMobileNavigation, AppNavigation } from '../layout';
-
-
-const ActiveLink = withRouter( (({ router, children, ...props }: any) => {
-    const child = Children.only(children);
-
-    let className = child.props.className || '';
-    if (router.pathname === props.href && props.activeClassName) {
-      className = `${className} ${props.activeClassName}`.trim();
-    }
-
-    delete props.activeClassName;
-
-    return <Link {...props}>{React.cloneElement(child, { className })}</Link>;
-}));
+import { ActiveLink } from '../utils';
 
 
 const Sidebar = ()=> {
@@ -36,7 +21,7 @@ const Sidebar = ()=> {
     return (
         <div className={sidebarClass}>
             <div>
-                <ActiveLink exact={true} href="/" activeClassName="active"><a className="jcw-sidebar-item">Home</a></ActiveLink><br/>
+                <ActiveLink href="/" activeClassName="active"><a className="jcw-sidebar-item">Home</a></ActiveLink><br/>
                 <ActiveLink href="/news" activeClassName="active"><a className="jcw-sidebar-item">News</a></ActiveLink><br/>
                 <ActiveLink href="/about" activeClassName="active"><a className="jcw-sidebar-item">About</a></ActiveLink>
             </div>
@@ -92,17 +77,3 @@ export default function MainLayout({ Component, pageProps }: AppProps) {
     );
 }
 
-/*
-
-    <div className="app-container container">
-        <div className="app-wrap row">
-            <div className="app-sidebar col-sm-12 col-md-3">
-                <Sidebar />
-            </div>
-            <div className="app-content col-sm-12 col-md-9"></div>
-        </div>
-        <footer>
-            <hr />© Vreshch V.D. {(new Date()).getFullYear()}
-        </footer>
-    </div>
-*/

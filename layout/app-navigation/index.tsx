@@ -18,7 +18,7 @@ export const AppNavigation = () => {
    return (
      <>
        <header className="app-navigation-header">
-          <NavLink to="/" exact strict className="app-navigation-header-logo">
+          <NavLink to="/" exact="true" strict="true" className="app-navigation-header-logo">
               <div className="app-navigation-header__logo-icon">
                 <LogoIcon />
               </div>

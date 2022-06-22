@@ -2,13 +2,13 @@
 @mixin bg-color-variant($name: ".bg-primary", $color: "primary-color", $text-color: "white-color") {
   #{$name} {
     background: var(--#{$color});
-    color: var(--#{$text-color}); 
+    color: var(--#{$text-color});
   }
 }
 
 // Text color utility mixin
 @mixin text-color-variant($name: ".text-primary", $color: "primary-color") {
   #{$name} {
-    color: var(--#{$color});
+    color: var(--#{$color}) !important;
   }
 }

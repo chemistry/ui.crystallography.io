@@ -1,8 +1,22 @@
-import * as React from "react";
-// import { NavLink } from "react-router-dom";
+import React, { Children } from 'react';
+import Link from 'next/link';
+import { withRouter } from 'next/router';
 import { StructureModel } from "../models";
 
 export type HighlightFunction = (name: string) => string;
+
+export const ActiveLink = withRouter( (({ router, children, ...props }: any) => {
+    const child = Children.only(children);
+
+    let className = child.props.className || '';
+    if (router.pathname === props.href && props.activeClassName) {
+      className = `${className} ${props.activeClassName}`.trim();
+    }
+
+    delete props.activeClassName;
+
+    return <Link {...props}>{React.cloneElement(child, { className })}</Link>;
+}));
 
 const CapitalizeFirstLetter = (name: string): string => {
     return name.charAt(0).toUpperCase() + name.slice(1);
