@@ -1,17 +1,17 @@
 import Head from 'next/head';
 import React from "react";
 
-export default function MainPage() {
+export const SearchPage = () => {
+
     return (
-        <div>
-            <Head>
-                <title>Crystal Structure Search</title>
-            </Head>
-            <h1>Main page</h1>
-            <hr />
-            <div className="app-text">
-                <p>Main page</p>
-            </div>
-            </div>
-    )
-}
+      <div className="search-layout-tabs">
+          <header className="app-layout-header">
+                <h2 className="text-primary">Crystal Structure Search</h2>
+          </header>
+          <div className="app-layout-content">
+          </div>
+      </div>
+  );
+};
+
+export default SearchPage;

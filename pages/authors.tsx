@@ -1,17 +1,20 @@
 import React from 'react';
-import Head from 'next/head';
 
-export default function AuthorsPage() {
+export const AuthorsPage = () => {
+
     return (
         <div>
-            <Head>
-                <title>Authors</title>
-            </Head>
-            <h1>About</h1>
-            <hr />
-            <div className="app-text">
-                <p>About</p>
+            <header className="app-layout-header">
+                <h2 className="text-primary">Authors</h2>
+            </header>
+            <div className="app-layout-content">
+                <div className="columns">
+                    <div className="column col-10">
+                    </div>
+                </div>
             </div>
         </div>
     );
-};
+}
+
+export default AuthorsPage;
