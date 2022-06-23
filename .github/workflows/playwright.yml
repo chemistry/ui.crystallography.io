@@ -18,6 +18,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Build Application
+        run: npm run build
+
+      - name: Start Dev Server
+        run: nohup npm start > output.log &
+
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
