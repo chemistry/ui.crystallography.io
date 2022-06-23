@@ -1,11 +1,11 @@
 import { test, expect } from "@playwright/test";
 
-const HOST = "https://ui.crystallography.io";
-const LOCAL_DEV = "http://localhost:3000";
+const HOST = "http://localhost:3000";
+// const DEPLOYMENT_HOST = "https://ui.crystallography.io";
 
 test.describe("Main Page", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(LOCAL_DEV);
+    await page.goto(HOST);
   });
   test("should have 'crystal structure search' title", async ({ page }) => {
     await expect(page.locator("[data-e2e='title']")).toHaveText(
@@ -43,7 +43,7 @@ test.describe("Main Page", () => {
 
 test.describe("Authors Page", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(`${LOCAL_DEV}/authors`);
+    await page.goto(`${HOST}/authors`);
   });
   test("should have 'Authors' title", async ({ page }) => {
     await expect(page.locator("[data-e2e='title']")).toHaveText("Authors");
@@ -52,7 +52,7 @@ test.describe("Authors Page", () => {
 
 test.describe("Catalog Page", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(`${LOCAL_DEV}/catalog`);
+    await page.goto(`${HOST}/catalog`);
   });
   test("should have 'Catalog' title", async ({ page }) => {
     await expect(page.locator("[data-e2e='title']")).toHaveText("Catalog");
@@ -61,7 +61,7 @@ test.describe("Catalog Page", () => {
 
 test.describe("About Us", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(`${LOCAL_DEV}/about`);
+    await page.goto(`${HOST}/about`);
   });
   test("should have 'About Us' title", async ({ page }) => {
     await expect(page.locator("[data-e2e='title']")).toHaveText("About Us");
@@ -75,7 +75,7 @@ test.describe("About Us", () => {
 
 test.describe("Contact Us", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(`${LOCAL_DEV}/contact`);
+    await page.goto(`${HOST}/contact`);
   });
   test("should have 'About Us' title", async ({ page }) => {
     await expect(page.locator("[data-e2e='title']")).toHaveText("Contact Us");
