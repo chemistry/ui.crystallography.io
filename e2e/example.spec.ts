@@ -33,7 +33,7 @@ test.describe("Main Page", () => {
     await expect(page.locator("[data-e2e='title']")).toHaveText("About Us");
   });
 
-  test("should navigate to about us page", async ({ page }) => {
+  test("should navigate to news page", async ({ page }) => {
     await page
       .locator(".app-navigation-header-menu-top [data-e2e='test']")
       .click();
