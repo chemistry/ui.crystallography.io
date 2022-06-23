@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, request } from "@playwright/test";
 
 const HOST = "http://localhost:3000";
 // const DEPLOYMENT_HOST = "https://ui.crystallography.io";
@@ -7,6 +7,7 @@ test.describe("Main Page", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(HOST);
   });
+
   test("should have 'crystal structure search' title", async ({ page }) => {
     await expect(page.locator("[data-e2e='title']")).toHaveText(
       "Crystal Structure Search"
@@ -39,6 +40,14 @@ test.describe("Main Page", () => {
       .click();
     await expect(page.locator("[data-e2e='title']")).toHaveText("Updates");
   });
+
+  test("should be isomorphic page", async ({ request }) => {
+    const response = await request.fetch(`${HOST}`);
+    const content = await response.text();
+    expect(content).toContain(
+      '<h2 class="text-primary" data-e2e="title">Crystal Structure Search</h2>'
+    );
+  });
 });
 
 test.describe("Authors Page", () => {
@@ -48,6 +57,13 @@ test.describe("Authors Page", () => {
   test("should have 'Authors' title", async ({ page }) => {
     await expect(page.locator("[data-e2e='title']")).toHaveText("Authors");
   });
+  test("should be isomorphic page", async ({ request }) => {
+    const response = await request.fetch(`${HOST}/authors`);
+    const content = await response.text();
+    expect(content).toContain(
+      '<h2 class="text-primary" data-e2e="title">Authors</h2>'
+    );
+  });
 });
 
 test.describe("Catalog Page", () => {
@@ -56,6 +72,13 @@ test.describe("Catalog Page", () => {
   });
   test("should have 'Catalog' title", async ({ page }) => {
     await expect(page.locator("[data-e2e='title']")).toHaveText("Catalog");
+  });
+  test("should be isomorphic page", async ({ request }) => {
+    const response = await request.fetch(`${HOST}/catalog`);
+    const content = await response.text();
+    expect(content).toContain(
+      '<h2 class="text-primary" data-e2e="title">Catalog</h2>'
+    );
   });
 });
 
@@ -69,6 +92,13 @@ test.describe("About Us", () => {
   test("should contain text", async ({ page }) => {
     await expect(page.locator("[data-e2e='content']")).toContainText(
       "The aim of this project is to make access to crystal structure data as easy as possible."
+    );
+  });
+  test("should be isomorphic page", async ({ request }) => {
+    const response = await request.fetch(`${HOST}/about`);
+    const content = await response.text();
+    expect(content).toContain(
+      '<h2 class="text-primary" data-e2e="title">About Us</h2>'
     );
   });
 });
@@ -88,5 +118,13 @@ test.describe("Contact Us", () => {
 
   test("should contain contact name", async ({ page }) => {
     await expect(page.locator("[data-e2e='content']")).toContainText("Vreshch");
+  });
+
+  test("should be isomorphic page", async ({ request }) => {
+    const response = await request.fetch(`${HOST}/contact`);
+    const content = await response.text();
+    expect(content).toContain(
+      '<h2 class="text-primary" data-e2e="title">Contact Us</h2>'
+    );
   });
 });
