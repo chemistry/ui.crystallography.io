@@ -35,7 +35,7 @@ test.describe("Main Page", () => {
 
   test("should navigate to news page", async ({ page }) => {
     await page
-      .locator(".app-navigation-header-menu-top [data-e2e='test']")
+      .locator(".app-navigation-header-menu-top [data-e2e='news']")
       .click();
     await expect(page.locator("[data-e2e='title']")).toHaveText("Updates");
   });
