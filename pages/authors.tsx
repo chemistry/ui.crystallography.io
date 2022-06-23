@@ -5,7 +5,7 @@ export const AuthorsPage = () => {
     return (
         <div>
             <header className="app-layout-header">
-                <h2 className="text-primary">Authors</h2>
+                <h2 className="text-primary" data-e2e="title">Authors</h2>
             </header>
             <div className="app-layout-content">
                 <div className="columns">

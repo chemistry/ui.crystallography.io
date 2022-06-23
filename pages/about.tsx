@@ -5,10 +5,10 @@ export const AboutPage = () => {
     return (
         <div>
             <header className="app-layout-header">
-                <h2 className="text-primary">About Us</h2>
+                <h2 className="text-primary" data-e2e="title">About Us</h2>
             </header>
             <div className="app-layout-content">
-                <div className="app-layout-page">
+                <div className="app-layout-page" data-e2e="content">
                 <p>The aim of this project is to make access to crystal
                         structure data as easy as possible.</p>
                     <p>A huge amount of empirical crystallographic

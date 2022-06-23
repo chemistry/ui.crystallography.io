@@ -4,10 +4,10 @@ export const ContactsPage = () => {
   return (
       <div>
           <header className="app-layout-header">
-              <h2 className="text-primary">Contact Us</h2>
+              <h2 className="text-primary" data-e2e="title">Contact Us</h2>
           </header>
           <div className="app-layout-content">
-              <div className="app-layout-page">
+              <div className="app-layout-page" data-e2e="content">
               <p>If you have any questions, suggestions, bug reports, future
                   requests : please feel to contact us via email or skype
                   provided below.<br /> Thank you.</p>
