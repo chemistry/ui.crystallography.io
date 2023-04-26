@@ -18,9 +18,9 @@ resource "hcloud_ssh_key" "default" {
 }
 
 resource "hcloud_server" "ui-server" {
-  name        = "web-server"
+  name        = var.host_name
   image       = "ubuntu-22.04"
-  server_type = "cx11"
+  server_type = "cax11"
   location    = "fsn1"
   ssh_keys    = [hcloud_ssh_key.default.id]
   user_data = templatefile("user_data.yml",
