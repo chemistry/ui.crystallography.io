@@ -24,6 +24,8 @@ lerna-debug.log
 .npmrc
 terraform.tfstate
 terraform.tfstate.backup
+tf_public_key_hetzner.pub
+setup/variables.tf
 /test-results/
 /playwright-report/
 /playwright/.cache/

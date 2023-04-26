@@ -1,0 +1,59 @@
+#cloud-config
+users:
+  - name: devops
+    groups: users, admin
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - ssh-rsa <key>
+package_update: true
+package_upgrade: true
+packages:
+  - fail2ban
+  - curl
+  - ufw
+runcmd:
+  - ufw allow http
+  - ufw allow https
+  - printf "[sshd]\nenabled = true\nbanaction = iptables-multiport" > /etc/fail2ban/jail.local
+  - systemctl enable fail2ban
+  - systemctl start fail2ban
+  - ufw allow 'OpenSSH'
+  - ufw enable
+  #  - sed -ie '/^PermitRootLogin/s/^.*$/PermitRootLogin no/' /etc/ssh/sshd_config
+  - sed -ie '/^PasswordAuthentication/s/^.*$/PasswordAuthentication no/' /etc/ssh/sshd_config
+  - sed -ie '/^X11Forwarding/s/^.*$/X11Forwarding no/' /etc/ssh/sshd_config
+  - sed -ie '/^#MaxAuthTries/s/^.*$/MaxAuthTries 2/' /etc/ssh/sshd_config
+  - sed -ie '/^#AllowTcpForwarding/s/^.*$/AllowTcpForwarding no/' /etc/ssh/sshd_config
+  - sed -ie '/^#AllowAgentForwarding/s/^.*$/AllowAgentForwarding no/' /etc/ssh/sshd_config
+  - sed -ie '/^#AuthorizedKeysFile/s/^.*$/AuthorizedKeysFile .ssh/authorized_keys/' /etc/ssh/sshd_config
+  #  - sed -i '$a AllowUsers devops' /etc/ssh/sshd_config
+  - systemctl restart ssh
+  # Set machine hostname
+  - echo "${host_name}" > /etc/hostname
+  - hostname -F /etc/hostname
+  - curl -fsSL https://get.docker.com -o get-docker.sh
+  - sudo sh get-docker.sh -y
+  - rm get-docker.sh
+  # Init swarm
+  - docker swarm init
+  # Install traefik
+  - docker network create --driver=overlay traefik-public
+  - export NODE_ID=$(docker info -f '{{.Swarm.NodeID}}')
+  - docker node update --label-add traefik-public.traefik-public-certificates=true $NODE_ID
+  - export EMAIL=${ssl_email}
+  - export DOMAIN=traefik-${host_name}
+  - export USERNAME=${traefik_username}
+  - export PASSWORD=${traefik_password}
+  - export HASHED_PASSWORD=$(openssl passwd -apr1 $PASSWORD)
+  - curl -L https://raw.githubusercontent.com/chemistry/crystallography.io/master/setup/traefik-host.yml -o traefik-host.yml
+  - docker stack deploy -c traefik-host.yml traefik
+  - docker stack ps traefik
+  # Install swarmpit
+  - export DOMAIN=swarmpit-${host_name}
+  - export NODE_ID=$(docker info -f '{{.Swarm.NodeID}}')
+  - docker node update --label-add swarmpit.db-data=true $NODE_ID
+  - docker node update --label-add swarmpit.influx-data=true $NODE_ID
+  - curl -L https://raw.githubusercontent.com/chemistry/crystallography.io/master/setup/swarmpit.yml -o swarmpit.yml
+  - docker stack deploy -c swarmpit.yml swarmpit
+  - docker stack ps swarmpit
