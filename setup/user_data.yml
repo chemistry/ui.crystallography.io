@@ -46,7 +46,7 @@ runcmd:
   - export USERNAME=${traefik_username}
   - export PASSWORD=${traefik_password}
   - export HASHED_PASSWORD=$(openssl passwd -apr1 $PASSWORD)
-  - curl -L https://raw.githubusercontent.com/chemistry/crystallography.io/master/setup/traefik-host.yml -o traefik-host.yml
+  - curl -L https://raw.githubusercontent.com/chemistry/ui.crystallography.io/master/setup/traefik-host.yml -o traefik-host.yml
   - docker stack deploy -c traefik-host.yml traefik
   - docker stack ps traefik
   # Install swarmpit
@@ -54,6 +54,6 @@ runcmd:
   - export NODE_ID=$(docker info -f '{{.Swarm.NodeID}}')
   - docker node update --label-add swarmpit.db-data=true $NODE_ID
   - docker node update --label-add swarmpit.influx-data=true $NODE_ID
-  - curl -L https://raw.githubusercontent.com/chemistry/crystallography.io/master/setup/swarmpit.yml -o swarmpit.yml
+  - curl -L https://raw.githubusercontent.com/chemistry/ui.crystallography.io/master/setup/swarmpit.yml -o swarmpit.yml
   - docker stack deploy -c swarmpit.yml swarmpit
   - docker stack ps swarmpit
