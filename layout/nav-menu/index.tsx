@@ -12,7 +12,7 @@ const NavLink = withRouter( (({ router, children, ...props }: any) => {
     const isActive = router.pathname === href && activeClassName;
     const newClassName = isActive ? `${className} ${activeClassName}` : className || '';
 
-    return <Link href={href}><a className={newClassName} {...rest}>{children}</a></Link>;
+    return <Link legacyBehavior href={href}><a className={newClassName} {...rest}>{children}</a></Link>;
 }));
 
 export const NavMenuBottom = ({ onClick }: { onClick?: () => void }) => {
