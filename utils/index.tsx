@@ -15,7 +15,7 @@ export const ActiveLink = withRouter( (({ router, children, ...props }: any) => 
 
     delete props.activeClassName;
 
-    return <Link {...props}>{React.cloneElement(child, { className })}</Link>;
+    return <Link legacyBehavior {...props}>{React.cloneElement(child, { className })}</Link>;
 }));
 
 const CapitalizeFirstLetter = (name: string): string => {
