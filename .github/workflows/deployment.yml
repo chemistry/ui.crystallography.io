@@ -38,3 +38,18 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Deploy to Docker swarm
+        uses: vreshch/docker-deployment-action@master
+        with:
+          remote_docker_host: root@ui.crystallography.io
+          ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
+          ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
+          pre_deployment_step_command: docker image prune
+          deployment_mode: docker-swarm
+          copy_stack_file: true
+          pull_images_first: true
+          deploy_path: /root
+          stack_file_name: docker-compose.yaml
+          keep_files: 5
+          args: --resolve-image=always
