@@ -16,15 +16,15 @@ Execute container
 
 ## Build Docker Image
 
-* Build docker image ``` docker build -t chemistry/c14-next-web . ```
-* Run Docker image on 80 port ``` docker run -p 80:8060 chemistry/c14-next-web ```
+* Build docker image ```docker build -t chemistry/c14-next-web .```
+* Run Docker image on 80 port ```docker run -p 80:8060 chemistry/c14-next-web```
 
 ## Build with Docker Compose
 
 * Start application
 
 ```bash
-docker compose down -v && docker compose up --build -d
+docker compose down -v && docker compose up --build
 ```
 
 * View Application Logs
@@ -32,8 +32,6 @@ docker compose down -v && docker compose up --build -d
 ```bash
 docker compose logs
 ```
-
-* Build docker image ``` docker compose up ```
 
 ## Setup Infrastructure
 
