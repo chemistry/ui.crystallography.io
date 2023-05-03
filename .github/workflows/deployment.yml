@@ -52,4 +52,4 @@ jobs:
           deploy_path: /root
           stack_file_name: docker-compose.yaml
           keep_files: 5
-          args: --resolve-image=always
+          args: --resolve-image=always ui-crystallography-io
