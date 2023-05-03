@@ -12,9 +12,14 @@ provider "hcloud" {
   token = var.hcloud_token
 }
 
-resource "hcloud_ssh_key" "default" {
-  name       = "hetzner_key"
-  public_key = file("tf_public_key_hetzner.pub")
+resource "hcloud_ssh_key" "deployment_key" {
+  name       = "deployment_key"
+  public_key = file("deployment_public_key.pub")
+}
+
+resource "hcloud_ssh_key" "private_key" {
+  name       = "private_key"
+  public_key = file("private_access_public_key.pub")
 }
 
 resource "hcloud_server" "ui-server" {
@@ -22,7 +27,7 @@ resource "hcloud_server" "ui-server" {
   image       = "ubuntu-22.04"
   server_type = "cax11"
   location    = "fsn1"
-  ssh_keys    = [hcloud_ssh_key.default.id]
+  ssh_keys    = [hcloud_ssh_key.deployment_key.id, hcloud_ssh_key.private_key.id]
   user_data = templatefile("user_data.yml",
     {
       host_name        = var.host_name
