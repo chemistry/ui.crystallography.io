@@ -37,7 +37,7 @@ jobs:
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          labels: ${{ steps.meta.outputs.labels }} latest
 
       - name: Deploy to Docker swarm
         uses: vreshch/docker-deployment-action@master
