@@ -10,9 +10,6 @@ env:
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: read|write
 
     steps:
       - name: Checkout repository
