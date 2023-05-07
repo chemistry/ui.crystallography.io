@@ -42,7 +42,7 @@ jobs:
           remote_docker_host: root@ui.crystallography.io
           ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
           ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
-          pre_deployment_step_command: docker image prune -f && echo ${{ secrets.DEPLOYMENT_PACKAGE_TOKEN }} | docker login -u ${{ github.repository_owner }} --password-stdin ghcr.io
+          pre_deployment_step_command: docker image prune -f && echo ${{ secrets.DEPLOYMENT_PACKAGE_TOKEN }} | docker login -u ${{ github.repository_owner }} --password-stdin
           deployment_mode: docker-swarm
           copy_stack_file: true
           pull_images_first: true
